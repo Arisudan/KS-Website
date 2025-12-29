@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KS Drives and Controls</title>
+    <meta name="description" content="Design and development of Drivers, Controllers, and Inverters.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0f172a', // Slate 900
+                            dark: '#1e293b', // Slate 800
+                            accent: '#0ea5e9', // Sky 500
+                            light: '#f8fafc', // Slate 50
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Animation Utilities */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-300 {
+            transition-delay: 0.3s;
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            overflow: hidden;
+            height: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-slider {
+                height: 450px;
+            }
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Smooth Count Animation */
+        @property --num {
+            syntax: "<integer>";
+            initial-value: 0;
+            inherits: false;
+        }
+    </style>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-brand-light text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- App Root -->
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Content injected by JS -->
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] hidden items-center justify-center">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-sm transform transition-all scale-100">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Admin Access</h2>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                    <input type="password" id="admin-password"
+                        class="w-full border-2 border-slate-200 rounded-lg p-3 focus:border-brand-accent focus:outline-none transition-colors"
+                        placeholder="Enter password" autofocus>
+                    <p id="login-error" class="text-red-500 text-sm mt-1 hidden">Incorrect password</p>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" id="close-modal"
+                        class="flex-1 px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="flex-1 px-4 py-2 bg-brand-blue text-white font-bold rounded-lg hover:bg-brand-dark transition-colors shadow-lg">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Mode Toggle (Fixed Bottom Right) -->
+    <div id="admin-controls" class="fixed bottom-6 right-6 z-50 flex gap-4">
+        <!-- Injected by JS -->
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/app.js?v=DASHBOARD_FIX_FINAL"></script>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+{
+    "companyInfo": {
+        "address": "No. 1047/3, Kattoor Street, Bannariammannagar, Coimbatore-641048, Tamil Nadu, India",
+        "email": "contact@ksdrives.com",
+        "gst": "33ASQPG2922F2ZX",
+        "logo": "https://placehold.co/150x50?text=KS+Drives&font=roboto",
+        "mapUrl": "https://maps.google.com/maps?q=No.+1047%2F3%2C+Kattoor+Street%2C+Bannariammannagar%2C+Coimbatore-641048&z=15&output=embed",
+        "name": "KS Drives and Controls",
+        "owner": "Gnanamoortheswaran",
+        "phone": "08044011076 (Ext: 6428)"
+    },
+    "pages": {
+        "about": {
+            "mission": {
+                "text": "KS Drives And Controls provides you the best range of rotary converter, hand tools, hydraulic tools, pneumatic tools, electric motors & electric power generator with effective & timely delivery.",
+                "title": "About Us"
+            },
+            "timeline": [
+                {
+                    "desc": "KS Drives started with a small team of engineers.",
+                    "title": "Founded",
+                    "year": "2020"
+                },
+                {
+                    "desc": "Patented our unique inverter technology.",
+                    "title": "First Patent",
+                    "year": "2022"
+                },
+                {
+                    "desc": "Opened offices in Europe and Asia.",
+                    "title": "Global Expansion",
+                    "year": "2024"
+                }
+            ],
+            "vision": {
+                "text": "To be the global benchmark for reliability and innovation in industrial electronics.",
+                "title": "Our Vision"
+            }
+        },
+        "contact": {
+            "subtitle": "We'd love to hear from you.",
+            "title": "Get in Touch"
+        },
+        "domains": {
+            "sections": [
+                {
+                    "content": "We provide comprehensive motor control solutions for articulate robots, AGVs, and drones.",
+                    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200",
+                    "title": "Robotics"
+                },
+                {
+                    "content": "Hands-on learning experiences for students with safe, transparent, and modular kits.",
+                    "image": "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&q=80&w=1200",
+                    "title": "Lab Kits"
+                },
+                {
+                    "content": "Smart sensors and gateways that bring legacy machines into the cloud era.",
+                    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+                    "title": "IoT"
+                }
+            ]
+        },
+        "home": {
+            "domains": {
+                "items": [
+                    {
+                        "desc": "Advanced motion control for next-gen robotics.",
+                        "icon": "Bot",
+                        "title": "Robotics"
+                    },
+                    {
+                        "desc": "Educational kits for future engineers.",
+                        "icon": "graduation-cap",
+                        "title": "College Lab Kits"
+                    },
+                    {
+                        "desc": "Connected solutions for smart factories.",
+                        "icon": "Wifi",
+                        "title": "IoT Systems"
+                    },
+                    {
+                        "desc": "Reliable controllers for heavy industry.",
+                        "icon": "Factory",
+                        "title": "Industrial Automation"
+                    }
+                ],
+                "title": "Our Expertise"
+            },
+            "hero": {
+                "backgroundImage": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2670",
+                "ctaText": "Explore Our Products",
+                "subtitle": "Leading the way in Drivers, Controllers, and Inverters for modern industry.",
+                "title": "Driven by Innovation, Controlled by Precision"
+            },
+            "highlights": {
+                "items": [
+                    {
+                        "desc": "High precision servo driver.",
+                        "image": "assets/uploads/1766679213_servo-ecma-800x800px.png",
+                        "name": "Servo Driver X1"
+                    },
+                    {
+                        "desc": "Robust visual logic controller.",
+                        "image": "assets/uploads/1766679202_PLC.webp",
+                        "name": "PLC Controller"
+                    }
+                ],
+                "title": "Featured Products"
+            }
+        },
+        "products": {
+            "categories": [
+                {
+                    "id": "motors-power",
+                    "products": [
+                        {
+                            "image": "assets/uploads/1766679239_download_3.jpg",
+                            "name": "Rotary Converter",
+                            "specs": "Efficient Phase Conversion"
+                        },
+                        {
+                            "image": "assets/uploads/1766679243_download_4.jpg",
+                            "name": "Electric Motors",
+                            "specs": "High Efficiency Industrial Motors"
+                        },
+                        {
+                            "image": "assets/uploads/1766679248_download_5.jpg",
+                            "name": "Single Phase Electric Motor",
+                            "specs": "Domestic & Light Industrial"
+                        },
+                        {
+                            "image": "assets/uploads/1766679270_download_6.jpg",
+                            "name": "Three Phase Electric Motor",
+                            "specs": "Heavy Duty Industrial"
+                        },
+                        {
+                            "image": "assets/uploads/1766679264_download_7.jpg",
+                            "name": "Electric Power Generator",
+                            "specs": "Reliable Backup Power"
+                        }
+                    ],
+                    "title": "Motors & Power"
+                },
+                {
+                    "id": "tools",
+                    "products": [
+                        {
+                            "image": "assets/uploads/1766679287_download_8.jpg",
+                            "name": "Hand Tools",
+                            "specs": "Precision Engineering Tools"
+                        },
+                        {
+                            "image": "assets/uploads/1766679278_download_9.jpg",
+                            "name": "Hydraulic Tools",
+                            "specs": "High Force Application"
+                        },
+                        {
+                            "image": "assets/uploads/1766679293_download_10.jpg",
+                            "name": "Pneumatic Tools",
+                            "specs": "Air Powered Efficiency"
+                        }
+                    ],
+                    "title": "Industrial Tools"
+                },
+                {
+                    "id": "electrical",
+                    "products": [
+                        {
+                            "image": "assets/uploads/1766679302_download_12.jpg",
+                            "name": "Electric Control Panel",
+                            "specs": "Custom Automation Control"
+                        },
+                        {
+                            "image": "assets/uploads/1766679308_download_13.jpg",
+                            "name": "Electrical Switch Board",
+                            "specs": "Power Distribution"
+                        },
+                        {
+                            "image": "assets/uploads/1766679314_download_11.jpg",
+                            "name": "Electrical Fuse",
+                            "specs": "Circuit Protection"
+                        }
+                    ],
+                    "title": "Electrical Components"
+                },
+                {
+                    "id": "automotive",
+                    "products": [
+                        {
+                            "image": "assets/uploads/1766679332_download_16.jpg",
+                            "name": "Automotive Components",
+                            "specs": "OEM Quality Standards"
+                        },
+                        {
+                            "image": "assets/uploads/1766679321_download_15.jpg",
+                            "name": "Automotive Plastic Components",
+                            "specs": "Durable & Lightweight"
+                        },
+                        {
+                            "image": "assets/uploads/1766679257_download_16.jpg",
+                            "name": "Automotive Spare Parts",
+                            "specs": "Wide Range Available"
+                        }
+                    ],
+                    "title": "Automotive Parts"
+                }
+            ]
+        },
+        "services": {
+            "list": [
+                {
+                    "desc": "Tailored PCB and Firmware design.",
+                    "icon": "Cpu",
+                    "title": "Custom Development"
+                },
+                {
+                    "desc": "Rapid 3D printing and PCBA.",
+                    "icon": "Printer",
+                    "title": "Prototyping"
+                },
+                {
+                    "desc": "On-site workshops for your team.",
+                    "icon": "Presentation",
+                    "title": "Training"
+                }
+            ]
+        }
+    }
+}
