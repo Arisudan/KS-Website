@@ -1,8 +1,17 @@
-import { store } from './store.js?v=FIX_STORE_V10';
+import { store } from './store.js';
 // Expose store globally for inline onclick handlers
 window.store = store;
 
 import { initRouter, renderApp } from './router.js';
+
+// Global Mobile Menu Toggle
+window.toggleMobileMenu = function () {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) {
+        menu.classList.toggle('translate-x-full');
+        document.body.classList.toggle('overflow-hidden');
+    }
+}
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {

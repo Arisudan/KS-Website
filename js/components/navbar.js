@@ -59,14 +59,28 @@ export function renderNavbar(currentRoute) {
                                 `;
     }).join('')}
                         </div>
-
-
                     </div>
-                    <!-- Mobile Menu Button (simplified) -->
-                    <button class="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors z-50">
                         <i data-lucide="menu" class="w-8 h-8"></i>
                     </button>
                 </div>
+            </div>
+
+            <!-- Mobile Fullscreen Menu -->
+            <div id="mobile-menu" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center gap-8">
+                <!-- Close Button -->
+                <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white p-2 hover:bg-white/10 rounded-lg">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+                
+                ${navLinks.map(link => `
+                    <a href="${link.path}" onclick="toggleMobileMenu()" 
+                       class="text-3xl font-bold text-white hover:text-brand-accent transition-colors ${link.special ? 'text-emerald-400' : ''}">
+                       ${link.name}
+                    </a>
+                `).join('')}
             </div>
         </nav>
     `;

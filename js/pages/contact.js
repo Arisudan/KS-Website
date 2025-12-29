@@ -35,14 +35,20 @@ export function renderContact() {
             });
 
             if (res.ok) {
-                alert("Message sent successfully! We will get back to you soon.");
+                alert("Message sent successfully!");
                 form.reset();
             } else {
-                alert("Failed to send message. Please try again.");
+                throw new Error("Backend unavailable");
             }
         } catch (err) {
-            console.error(err);
-            alert("Error sending message.");
+            console.warn("Backend failed, using Mailto fallback:", err);
+            // Fallback: Open Mail Client
+            const subject = `Inquiry: ${data.interest} (${data.name})`;
+            const body = `Name: ${data.name}\nEmail: ${data.email}\nInterest: ${data.interest}\n\nMessage:\n${data.message}`;
+            // Use the company email from store if available, else fallback
+            const toEmail = store.state.content.companyInfo.email || "contact@ksdrives.com";
+            window.location.href = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            alert("Opening your email client to send the message...");
         } finally {
             btn.disabled = false;
             btn.innerText = originalText;

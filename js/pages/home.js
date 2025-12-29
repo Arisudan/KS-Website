@@ -16,8 +16,8 @@ export function renderHome() {
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-brand-blue/90 via-brand-blue/70 to-black/60 z-10"></div>
                 
-                <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-40 pt-32 pb-72">
-                     <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-snug max-w-5xl tracking-wide uppercase drop-shadow-lg ${editClass}" 
+                <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-40 pt-24 pb-48 md:pt-32 md:pb-72">
+                     <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-snug max-w-5xl tracking-wide uppercase drop-shadow-lg ${editClass}" 
                         data-editable="pages.home.hero.title">${hero.title}</h1>
                      <p class="text-2xl text-slate-200 mb-12 max-w-3xl font-light tracking-wide drop-shadow-md ${editClass}"
                         data-editable="pages.home.hero.subtitle">${hero.subtitle}</p>

@@ -1,13 +1,13 @@
 import { store } from './store.js';
-import { renderHome, setupHomeInteractions } from './pages/home.js?v=HOME_TEXT_LIFT';
+import { renderHome, setupHomeInteractions } from './pages/home.js?v=HERO_MOBILE_OPT';
 import { renderAbout } from './pages/about.js';
 import { renderProducts } from './pages/products.js?v=PROD_SEARCH_MOVED';
 import { renderDomains } from './pages/domains.js?v=DOMAINS_FORCE_FIX';
 import { renderServices } from './pages/services.js?v=SERVICES_GLASS';
-import { renderContact } from './pages/contact.js?v=CONTACT_SMART_FORM';
-import { renderNavbar } from './components/navbar.js?v=NAVBAR_DASH_FIX';
+import { renderContact } from './pages/contact.js?v=STATIC_MIGRATION';
+import { renderNavbar } from './components/navbar.js?v=MOBILE_MENU_FIX';
 import { renderFooter } from './components/footer.js?v=FOOTER_ALIGN_FIX';
-import { renderAdmin } from './pages/admin.js?v=SEO_ADMIN_V2';
+import { renderAdmin } from './pages/admin.js?v=HYBRID_UPLOAD_V2';
 import { renderSearch } from './pages/search.js?v=SEARCH_PAGE_FIX';
 
 export function initRouter() {

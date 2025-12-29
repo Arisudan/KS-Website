@@ -126,39 +126,64 @@ class Store {
 
     // New: Upload Image to Backend
     async uploadImage(file) {
-        const formData = new FormData();
-        formData.append('file', file);
-
+        // 1. Try Backend Upload First (for local python server users)
         try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // 2s Timeout to fail fast if backend is missing (Static Mode)
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), 2000);
+
             const res = await fetch('/api/upload', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                signal: controller.signal
             });
-
-            if (res.status === 401) {
-                throw new Error("Unauthorized");
-            }
+            clearTimeout(id);
 
             if (res.ok) {
                 const data = await res.json();
-                return data.url; // Returns relative path e.g. "assets/uploads/123_dog.jpg"
-            } else {
-                throw new Error("Upload failed");
+                console.log("backend upload success:", data.url);
+                return data.url;
             }
         } catch (e) {
-            console.error("Upload error:", e);
-            if (e.message === "Unauthorized") {
-                alert("Session expired. Please login again.");
-                this.state.editMode = false;
-                this.notify();
-            }
-            // Fallback: Return Base64 if server fails (so it still works in session)
-            return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.onload = (e) => resolve(e.target.result);
-                reader.readAsDataURL(file);
-            });
+            console.warn("Backend upload unavailable. Using Direct Client-Side Embedding.", e);
         }
+
+        // 2. Fallback: Direct Client-Side Compression (Base64)
+        // Allows upload without backend.
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    const MAX_WIDTH = 1000;
+                    const MAX_HEIGHT = 1000;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                    } else {
+                        if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.75);
+                    resolve(dataUrl);
+                };
+            };
+            reader.onerror = reject;
+        });
     }
 
     resetContent() {
@@ -193,8 +218,19 @@ class Store {
                 return true;
             }
         } catch (e) {
-            console.error("Login error:", e);
+            console.warn("Backend login failed (Static Mode?):", e);
         }
+
+        // Static Fallback
+        // WARNING: This is client-side only and visible in source code.
+        // Intended for static hosting (GitHub Pages) where no backend exists.
+        if (password === 'admin') {
+            alert("Logged in via Static Mode (Local Admin). Changes will save to your browser.");
+            this.state.editMode = true;
+            this.notify();
+            return true;
+        }
+
         return false;
     }
 
