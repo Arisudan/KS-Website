@@ -1,11 +1,12 @@
 import { store } from './store.js';
-import { renderHome, setupHomeInteractions } from './pages/home.js?v=HERO_MOBILE_OPT';
+// Assuming store import doesn't have version here, but I will update a page import to force refresh.
+import { renderHome, setupHomeInteractions } from './pages/home.js?v=CONTENT_REORDER';
 import { renderAbout } from './pages/about.js';
 import { renderProducts } from './pages/products.js?v=PROD_SEARCH_MOVED';
 import { renderDomains } from './pages/domains.js?v=DOMAINS_FORCE_FIX';
 import { renderServices } from './pages/services.js?v=SERVICES_GLASS';
 import { renderContact } from './pages/contact.js?v=STATIC_MIGRATION';
-import { renderNavbar } from './components/navbar.js?v=MOBILE_MENU_FIX';
+import { renderNavbar } from './components/navbar.js?v=MOBILE_MENU_V2';
 import { renderFooter } from './components/footer.js?v=FOOTER_ALIGN_FIX';
 import { renderAdmin } from './pages/admin.js?v=HYBRID_UPLOAD_V2';
 import { renderSearch } from './pages/search.js?v=SEARCH_PAGE_FIX';
@@ -22,6 +23,9 @@ async function handleRoute() {
 }
 
 export async function renderApp(route) {
+    // Safety: Ensure scroll is unlocked on route change
+    document.body.classList.remove('overflow-hidden');
+
     const app = document.getElementById('app');
     const { content, editMode } = store.state;
 

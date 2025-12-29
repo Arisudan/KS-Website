@@ -1,4 +1,4 @@
-import { store } from './store.js';
+import { store } from './store.js?v=UPLOAD_FIX_V2';
 // Expose store globally for inline onclick handlers
 window.store = store;
 
@@ -284,7 +284,7 @@ function handleImageEdit(path) {
                 document.body.style.cursor = originalCursor;
             } catch (err) {
                 console.error("Image upload failed:", err);
-                alert("Failed to upload image.");
+                alert("Upload Failed: " + err.message);
                 document.body.style.cursor = 'default';
             }
         }

@@ -69,18 +69,30 @@ export function renderNavbar(currentRoute) {
             </div>
 
             <!-- Mobile Fullscreen Menu -->
-            <div id="mobile-menu" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center gap-8">
+            <div id="mobile-menu" class="fixed inset-0 bg-slate-900/98 backdrop-blur-xl z-[100] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center gap-10">
                 <!-- Close Button -->
-                <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white p-2 hover:bg-white/10 rounded-lg">
-                    <i data-lucide="x" class="w-8 h-8"></i>
+                <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white p-4 hover:bg-white/10 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-10 h-10"></i>
                 </button>
                 
-                ${navLinks.map(link => `
-                    <a href="${link.path}" onclick="toggleMobileMenu()" 
-                       class="text-3xl font-bold text-white hover:text-brand-accent transition-colors ${link.special ? 'text-emerald-400' : ''}">
-                       ${link.name}
-                    </a>
-                `).join('')}
+                <!-- Menu Items -->
+                <div class="flex flex-col items-center gap-8 w-full">
+                    ${navLinks.map(link => `
+                        <a href="${link.path}" onclick="toggleMobileMenu()" 
+                           class="text-3xl font-bold text-white/90 hover:text-brand-accent transition-colors tracking-wide ${link.special ? 'text-emerald-400' : ''}">
+                           ${link.name}
+                        </a>
+                    `).join('')}
+                </div>
+                
+                <!-- Mobile Footer Info -->
+                <div class="absolute bottom-10 text-center text-slate-500 text-sm">
+                    <p class="mb-2">KS Drives and Controls</p>
+                    <div class="flex gap-4 justify-center">
+                        <a href="#" class="hover:text-white"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-white"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
             </div>
         </nav>
     `;

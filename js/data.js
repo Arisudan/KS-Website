@@ -20,10 +20,10 @@ export const defaultContent = {
             domains: {
                 title: "Our Expertise",
                 items: [
-                    { title: "Robotics", desc: "Advanced motion control for next-gen robotics.", icon: "Bot" },
                     { title: "College Lab Kits", desc: "Educational kits for future engineers.", icon: "graduation-cap" },
                     { title: "IoT Systems", desc: "Connected solutions for smart factories.", icon: "Wifi" },
-                    { title: "Industrial Automation", desc: "Reliable controllers for heavy industry.", icon: "Factory" }
+                    { title: "Industrial Automation", desc: "Reliable controllers for heavy industry.", icon: "Factory" },
+                    { title: "Robotics", desc: "Advanced motion control for next-gen robotics.", icon: "Bot" }
                 ]
             },
             highlights: {
@@ -93,10 +93,10 @@ export const defaultContent = {
         },
         domains: {
             sections: [
-                { title: "Robotics", content: "We provide comprehensive motor control solutions for articulate robots, AGVs, and drones.", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200" },
                 { title: "Lab Kits", content: "Hands-on learning experiences for students with safe, transparent, and modular kits.", image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?auto=format&fit=crop&q=80&w=1200" },
                 { title: "IoT", content: "Smart sensors and gateways that bring legacy machines into the cloud era.", image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" },
-                { title: "Industrial Automation", content: "Reliable PLC and SCADA systems for streamlined manufacturing processes.", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200" }
+                { title: "Industrial Automation", content: "Reliable PLC and SCADA systems for streamlined manufacturing processes.", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200" },
+                { title: "Robotics", content: "We provide comprehensive motor control solutions for articulate robots, AGVs, and drones.", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200" }
             ]
         },
         services: {

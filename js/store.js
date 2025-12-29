@@ -32,7 +32,7 @@ class Store {
 
     // Load from LocalStorage (Sync) - Instant render
     loadLocalContent() {
-        const storedStr = localStorage.getItem('ks_drives_content_v10');
+        const storedStr = localStorage.getItem('ks_drives_content_v11');
         if (storedStr) {
             const stored = JSON.parse(storedStr);
 
@@ -82,7 +82,7 @@ class Store {
                 if (Object.keys(data).length > 0) {
                     this.state.content = data;
                     // Update local cache
-                    localStorage.setItem('ks_drives_content_v10', JSON.stringify(data));
+                    localStorage.setItem('ks_drives_content_v11', JSON.stringify(data));
                     this.notify();
                     console.log("Synced with backend.");
                 } else {
@@ -98,7 +98,7 @@ class Store {
     async saveContent(silent = false) {
         // 1. Save to LocalStorage (Optimistic UI)
         try {
-            localStorage.setItem('ks_drives_content_v10', JSON.stringify(this.state.content));
+            localStorage.setItem('ks_drives_content_v11', JSON.stringify(this.state.content));
             if (!silent) this.notify();
         } catch (e) {
             console.error("Local save failed:", e);
@@ -121,6 +121,7 @@ class Store {
             }
         } catch (e) {
             console.error("Backend save failed:", e);
+            alert("Warning: Changes could not be saved to server. " + e.message);
         }
     }
 
