@@ -18,7 +18,6 @@ export function initRouter() {
 
 async function handleRoute() {
     const hash = window.location.hash.slice(1) || 'home';
-    const app = document.getElementById('app');
     await renderApp(hash);
 }
 
@@ -26,16 +25,13 @@ export async function renderApp(route) {
     // Safety: Ensure scroll is unlocked on route change
     document.body.classList.remove('overflow-hidden');
 
+    // Optimized Rendering (Diffing)
     const app = document.getElementById('app');
-    const { content, editMode } = store.state;
 
     // Handle Search Route specially if it contains query params
     const cleanRoute = route.split('?')[0];
 
-    // Header
-    const headerHTML = renderNavbar(cleanRoute);
-
-    // Page Content
+    // Page Content Selection
     let pageHTML = '';
     switch (cleanRoute) {
         case 'home': pageHTML = renderHome(); break;
@@ -49,16 +45,28 @@ export async function renderApp(route) {
         default: pageHTML = renderHome();
     }
 
-    // Footer
-    const footerHTML = renderFooter();
+    // 1. Initial Setup (First Load)
+    if (!document.getElementById('main-content')) {
+        app.innerHTML = `
+            ${renderNavbar(cleanRoute)}
+            <main id="main-content" class="flex-grow pt-16 min-h-screen">
+                ${pageHTML}
+            </main>
+            ${renderFooter()}
+        `;
+    } else {
+        // 2. SPA Update (Subsequent Loads)
+        // Only replace the content, keep the shell (Nav/Footer)
+        const main = document.getElementById('main-content');
+        if (main) main.innerHTML = pageHTML;
 
-    app.innerHTML = `
-        ${headerHTML}
-        <main class="flex-grow pt-16">
-            ${pageHTML}
-        </main>
-        ${footerHTML}
-    `;
+        // Update Navbar Active State
+        updateNavbarActiveState(cleanRoute);
+
+        // Update Mobile Menu (Close it)
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu) mobileMenu.classList.add('hidden');
+    }
 
     // Post-render hooks
     if (cleanRoute === 'home' || cleanRoute === '') {
@@ -71,4 +79,21 @@ export async function renderApp(route) {
 
     // Post-render hooks (scroll to top)
     window.scrollTo(0, 0);
+}
+
+// Helper: Update Nav Links without re-rendering
+function updateNavbarActiveState(currentRoute) {
+    const links = document.querySelectorAll('nav a');
+    links.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        const route = href.replace('#', '');
+
+        if (route === currentRoute) {
+            link.classList.add('text-brand-accent');
+            link.classList.remove('text-slate-600');
+        } else {
+            link.classList.remove('text-brand-accent');
+            link.classList.add('text-slate-600');
+        }
+    });
 }

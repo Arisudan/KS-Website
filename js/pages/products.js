@@ -29,31 +29,17 @@ export function renderProducts() {
         const mediaContainer = document.getElementById('modal-media-container');
         mediaContainer.innerHTML = ''; // Clear previous
 
-        if (product.model3d) {
-            // 3D Model Viewer
-            mediaContainer.innerHTML = `
-                <model-viewer 
-                    src="${product.model3d}" 
-                    poster="${product.image}"
-                    loading="eager"
-                    camera-controls 
-                    disable-zoom
-                    auto-rotate
-                    shadow-intensity="1"
-                    style="width: 100%; height: 100%; min-height: 400px; --poster-color: transparent;"
-                    class="w-full h-full block"
-                    alt="${product.name} 3D Model">
-                </model-viewer>
-                <div class="absolute bottom-4 left-0 right-0 text-center pointer-events-none z-10">
-                   <div class="inline-block bg-white/80 backdrop-blur px-3 py-1 rounded-full text-xs text-slate-500 shadow-sm border border-slate-200">
-                        <i data-lucide="scan-face" class="inline w-3 h-3 mr-1 align-text-bottom"></i> Use one finger to rotate
-                   </div>
-                </div>
-            `;
-        } else {
-            // Standard Image
-            mediaContainer.innerHTML = `<img src="${product.image}" alt="${product.name}" class="max-w-full max-h-[400px] object-contain drop-shadow-lg">`;
-        }
+        // Always show Standard Image (3D Removed per request)
+        mediaContainer.innerHTML = `
+             <div class="w-full h-full min-h-[300px] flex items-center justify-center bg-white rounded-xl overflow-hidden relative group p-4 border border-slate-100">
+                <img 
+                    src="${product.image}" 
+                    alt="${product.name}" 
+                    class="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+             </div>
+        `;
 
         // Detailed Specs List
         const specsList = document.getElementById('modal-specs');
