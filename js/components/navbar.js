@@ -1,16 +1,18 @@
-import { store } from '../store.js';
+// import { store } from '../store.js'; // REMOVED to prevent module duplication issues
 
-export function renderNavbar(currentRoute) {
+export function renderNavbar(currentRoute, editMode = false) {
     const navLinks = [
         { name: 'Home', path: '#home' },
         { name: 'About Us', path: '#about' },
         { name: 'Products', path: '#products' },
         { name: 'Domains', path: '#domains' },
-        { name: 'Services', path: '#services' },
-        { name: 'Contact', path: '#contact' }
+        { name: 'Services', path: '#services' }
     ];
 
-    if (store.state.editMode) {
+    // Explicitly add Contact first (so Dashboard appears to its right)
+    navLinks.push({ name: 'Contact', path: '#contact' });
+
+    if (editMode) {
         navLinks.push({ name: 'Dashboard', path: '#admin', special: true });
     }
 
@@ -35,8 +37,8 @@ export function renderNavbar(currentRoute) {
         if (link.special) {
             return `
                 <a href="${link.path}" 
-                   class="bg-emerald-500 text-white hover:bg-emerald-600 px-4 py-2 rounded-lg font-bold transition-all shadow-lg flex items-center gap-2 ml-4">
-                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                   class="bg-emerald-500 !text-white hover:bg-emerald-600 px-4 py-2 rounded-lg font-bold transition-all shadow-lg flex items-center gap-2 ml-4">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4 text-white"></i>
                     <span>${link.name}</span>
                 </a>
             `;

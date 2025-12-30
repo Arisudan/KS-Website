@@ -1,4 +1,4 @@
-import { store } from './store.js?v=UPLOAD_FIX_V2';
+import { store } from './store.js';
 // Expose store globally for inline onclick handlers
 window.store = store;
 

@@ -1,15 +1,15 @@
 import { store } from './store.js';
 // Assuming store import doesn't have version here, but I will update a page import to force refresh.
-import { renderHome, setupHomeInteractions } from './pages/home.js?v=CONTENT_REORDER';
-import { renderAbout } from './pages/about.js';
-import { renderProducts } from './pages/products.js?v=PROD_SEARCH_MOVED';
-import { renderDomains } from './pages/domains.js?v=DOMAINS_FORCE_FIX';
-import { renderServices } from './pages/services.js?v=SERVICES_GLASS';
-import { renderContact } from './pages/contact.js?v=STATIC_MIGRATION';
-import { renderNavbar } from './components/navbar.js?v=MOBILE_MENU_V2';
-import { renderFooter } from './components/footer.js?v=FOOTER_ALIGN_FIX';
-import { renderAdmin } from './pages/admin.js?v=HYBRID_UPLOAD_V2';
-import { renderSearch } from './pages/search.js?v=SEARCH_PAGE_FIX';
+import { renderHome, setupHomeInteractions } from './pages/home.js?v=V40';
+import { renderAbout } from './pages/about.js?v=V40';
+import { renderProducts } from './pages/products.js?v=V40';
+import { renderDomains } from './pages/domains.js?v=V40';
+import { renderServices } from './pages/services.js?v=V40';
+import { renderContact } from './pages/contact.js?v=V40';
+import { renderNavbar } from './components/navbar.js?v=V40';
+import { renderFooter } from './components/footer.js?v=V40';
+import { renderAdmin } from './pages/admin.js?v=V40';
+import { renderSearch } from './pages/search.js?v=V40';
 
 export function initRouter() {
     window.addEventListener('hashchange', handleRoute);
@@ -46,9 +46,11 @@ export async function renderApp(route) {
     }
 
     // 1. Initial Setup (First Load)
+    const headerHTML = renderNavbar(cleanRoute, store.state.editMode);
+
     if (!document.getElementById('main-content')) {
         app.innerHTML = `
-            ${renderNavbar(cleanRoute)}
+            <div id="header-container">${headerHTML}</div>
             <main id="main-content" class="flex-grow pt-16 min-h-screen">
                 ${pageHTML}
             </main>
@@ -56,9 +58,12 @@ export async function renderApp(route) {
         `;
     } else {
         // 2. SPA Update (Subsequent Loads)
-        // Only replace the content, keep the shell (Nav/Footer)
         const main = document.getElementById('main-content');
         if (main) main.innerHTML = pageHTML;
+
+        // Update Header (To show/hide Dashboard button dynamically)
+        const headerContainer = document.getElementById('header-container');
+        if (headerContainer) headerContainer.innerHTML = renderNavbar(cleanRoute, store.state.editMode);
 
         // Update Navbar Active State
         updateNavbarActiveState(cleanRoute);
@@ -74,7 +79,6 @@ export async function renderApp(route) {
     }
 
     // Re-initialize icons
-    // @ts-ignore
     if (window.lucide) window.lucide.createIcons();
 
     // Post-render hooks (scroll to top)
