@@ -120,8 +120,14 @@
                     "products": [
                         {
                             "image": "assets/uploads/1766679239_download_3.jpg",
+                            "model3d": "https://modelviewer.dev/shared-assets/models/RobotExpressive.glb",
                             "name": "Rotary Converter",
-                            "specs": "Efficient Phase Conversion"
+                            "specs": "Efficient Phase Conversion",
+                            "tags": [
+                                "High Efficiency",
+                                "Industrial",
+                                "Available"
+                            ]
                         },
                         {
                             "image": "assets/uploads/1766679243_download_4.jpg",
@@ -202,7 +208,7 @@
                             "specs": "Durable & Lightweight"
                         },
                         {
-                            "image": "assets/uploads/1766679257_download_16.jpg",
+                            "image": "assets/uploads/1767107141_download_14.jpg",
                             "name": "Automotive Spare Parts",
                             "specs": "Wide Range Available"
                         }

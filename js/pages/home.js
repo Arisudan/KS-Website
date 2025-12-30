@@ -16,7 +16,7 @@ export function renderHome() {
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-brand-blue/90 via-brand-blue/70 to-black/60 z-10"></div>
                 
-                <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-40 pt-24 pb-48 md:pt-32 md:pb-72">
+                <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-40 pt-20 pb-32 md:pt-32 md:pb-72">
                      <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-snug max-w-5xl tracking-wide uppercase drop-shadow-lg ${editClass}" 
                         data-editable="pages.home.hero.title">${hero.title}</h1>
                      <p class="text-2xl text-slate-200 mb-12 max-w-3xl font-light tracking-wide drop-shadow-md ${editClass}"
@@ -57,7 +57,7 @@ export function renderHome() {
 
         <!-- Animated Stats Counter -->
         <!-- Animated Stats Counter (Glassmorphism) -->
-        <section class="relative z-30 -mt-24 mb-16 px-4">
+        <section class="relative z-30 -mt-12 md:-mt-24 mb-16 px-4">
             <div class="container mx-auto">
                 <div class="bg-brand-blue/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-1 transition-transform duration-500">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 text-center text-white md:divide-x md:divide-white/10">

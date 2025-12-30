@@ -55,9 +55,25 @@ export const defaultContent = {
                     id: "motors-power",
                     title: "Motors & Power",
                     products: [
-                        { name: "Rotary Converter", specs: "Efficient Phase Conversion", image: "https://placehold.co/400x300?text=Rotary+Converter" },
-                        { name: "Electric Motors", specs: "High Efficiency Industrial Motors", image: "https://placehold.co/400x300?text=Electric+Motors" },
-                        { name: "Single Phase Electric Motor", specs: "Domestic & Light Industrial", image: "https://placehold.co/400x300?text=1-Phase+Motor" },
+                        {
+                            name: "Rotary Converter",
+                            specs: "Efficient Phase Conversion",
+                            image: "https://placehold.co/400x300?text=Rotary+Converter",
+                            model3d: "https://modelviewer.dev/shared-assets/models/RobotExpressive.glb",
+                            tags: ["High Efficiency", "Industrial", "Available"]
+                        },
+                        {
+                            name: "Electric Motors",
+                            specs: "High Efficiency Industrial Motors",
+                            image: "https://placehold.co/400x300?text=Electric+Motors",
+                            tags: ["Heavy Duty", "Industrial"]
+                        },
+                        {
+                            name: "Single Phase Electric Motor",
+                            specs: "Domestic & Light Industrial",
+                            image: "https://placehold.co/400x300?text=1-Phase+Motor",
+                            tags: ["Domestic", "Single Phase"]
+                        },
                         { name: "Three Phase Electric Motor", specs: "Heavy Duty Industrial", image: "https://placehold.co/400x300?text=3-Phase+Motor" },
                         { name: "Electric Power Generator", specs: "Reliable Backup Power", image: "https://placehold.co/400x300?text=Power+Generator" }
                     ]

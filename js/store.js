@@ -5,7 +5,8 @@ class Store {
         this.state = {
             content: this.loadLocalContent(), // Initial load from local/default
             editMode: false,
-            user: null
+            user: null,
+            cart: this.loadCart()
         };
         this.listeners = [];
         this.history = []; // Undo stack
@@ -15,6 +16,51 @@ class Store {
 
         // Sync with backend on init
         this.fetchBackendContent();
+    }
+
+    loadCart() {
+        try {
+            const stored = JSON.parse(localStorage.getItem('ks_drives_cart') || '[]');
+            // Validate: Ensure it is an array and items have IDs
+            if (Array.isArray(stored)) {
+                return stored.filter(item => item && item.name); // Filter out bad objects
+            }
+            return [];
+        } catch { return []; }
+    }
+
+    addToCart(product) {
+        if (!product) return;
+
+        // Ensure cart is array
+        if (!Array.isArray(this.state.cart)) this.state.cart = [];
+
+        this.state.cart.push({
+            ...product,
+            cartId: String(Date.now() + Math.random().toString(36).substr(2, 9))
+        });
+
+        console.log("Cart updated:", this.state.cart);
+        this.saveCart();
+        if (window.refreshCartUI) window.refreshCartUI();
+    }
+
+    removeFromCart(cartId) {
+        // Instant delete, type-safe comparison
+        this.state.cart = this.state.cart.filter(item => String(item.cartId) !== String(cartId));
+        this.saveCart();
+        if (window.refreshCartUI) window.refreshCartUI();
+    }
+
+    clearCart() {
+        this.state.cart = [];
+        this.saveCart();
+        if (window.refreshCartUI) window.refreshCartUI();
+    }
+
+    saveCart() {
+        localStorage.setItem('ks_drives_cart', JSON.stringify(this.state.cart));
+        this.notify();
     }
 
     async checkAuth() {
@@ -32,7 +78,7 @@ class Store {
 
     // Load from LocalStorage (Sync) - Instant render
     loadLocalContent() {
-        const storedStr = localStorage.getItem('ks_drives_content_v11');
+        const storedStr = localStorage.getItem('ks_drives_content_v12');
         if (storedStr) {
             const stored = JSON.parse(storedStr);
 
@@ -59,17 +105,10 @@ class Store {
             if (!stored.companyInfo.phone && defaultContent.companyInfo.phone) {
                 stored.companyInfo.phone = defaultContent.companyInfo.phone;
             }
-            if (!stored.companyInfo.owner && defaultContent.companyInfo.owner) {
-                stored.companyInfo.owner = defaultContent.companyInfo.owner;
-            }
-            if (!stored.companyInfo.gst && defaultContent.companyInfo.gst) {
-                stored.companyInfo.gst = defaultContent.companyInfo.gst;
-            }
-            if (!stored.companyInfo.mapUrl && defaultContent.companyInfo.mapUrl) {
-                stored.companyInfo.mapUrl = defaultContent.companyInfo.mapUrl;
-            }
             return stored;
         }
+
+        // Return default if no storage or outdated
         return JSON.parse(JSON.stringify(defaultContent));
     }
 
@@ -82,7 +121,7 @@ class Store {
                 if (Object.keys(data).length > 0) {
                     this.state.content = data;
                     // Update local cache
-                    localStorage.setItem('ks_drives_content_v11', JSON.stringify(data));
+                    localStorage.setItem('ks_drives_content_v12', JSON.stringify(data));
                     this.notify();
                     console.log("Synced with backend.");
                 } else {
@@ -98,11 +137,19 @@ class Store {
     async saveContent(silent = false) {
         // 1. Save to LocalStorage (Optimistic UI)
         try {
-            localStorage.setItem('ks_drives_content_v11', JSON.stringify(this.state.content));
-            if (!silent) this.notify();
+            localStorage.setItem('ks_drives_content_v12', JSON.stringify(this.state.content));
+            if (!silent) {
+                this.notify(); // Update UI
+                // Flash "Auto-saved" badge
+                const badge = document.getElementById('save-badge');
+                if (badge) {
+                    badge.classList.remove('opacity-0');
+                    setTimeout(() => badge.classList.add('opacity-0'), 2000);
+                }
+            }
         } catch (e) {
-            console.error("Local save failed:", e);
-            alert("Storage Limit Exceeded! Check console.");
+            console.error("Local storage save failed", e);
+            // Handle quota exceeded?
         }
 
         // 2. Save to Backend (Secure)
@@ -202,7 +249,13 @@ class Store {
     }
 
     notify() {
-        this.listeners.forEach(listener => listener(this.state));
+        this.listeners.forEach(listener => {
+            try {
+                listener(this.state);
+            } catch (e) {
+                console.error("Listener failed:", e);
+            }
+        });
     }
 
     async login(password) {

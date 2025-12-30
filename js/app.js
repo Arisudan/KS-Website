@@ -13,6 +13,8 @@ window.toggleMobileMenu = function () {
     }
 }
 
+import { renderCart } from './components/cart.js';
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     initRouter();
@@ -35,14 +37,40 @@ document.addEventListener('DOMContentLoaded', () => {
         setupAdminControls(); // Re-render controls if state changed
         setupScrollReveal(); // Re-bind scroll animations
         setup3DTilt(); // Re-bind tilt
+
+        // Render Cart Widget (Global)
+        updateCartUI();
     });
 
     // Initial check
     document.body.classList.toggle('edit-mode', store.state.editMode);
 
     // Render controls once
+    // Render controls once
     updateAdminControlsUI();
+    updateCartUI();
 });
+
+// Expose for Store to call if needed (Hard Refresh)
+window.refreshCartUI = updateCartUI;
+
+function updateCartUI() {
+    const cartContainer = document.getElementById('cart-widget-container');
+    if (cartContainer) {
+        // Preserve Scroll Position
+        const list = cartContainer.querySelector('.overflow-y-auto');
+        const scrollTop = list ? list.scrollTop : 0;
+
+        // Fix: Pass store state cart to avoid module instance mismatch
+        cartContainer.innerHTML = renderCart(store.state.cart);
+
+        // Restore Scroll Position
+        const newList = cartContainer.querySelector('.overflow-y-auto');
+        if (newList) newList.scrollTop = scrollTop;
+
+        if (window.lucide) window.lucide.createIcons({ root: cartContainer });
+    }
+}
 
 function setup3DTilt() {
     // Only apply on desktop to save battery/performance on mobile
