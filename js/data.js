@@ -29,8 +29,8 @@ export const defaultContent = {
             highlights: {
                 title: "Featured Products",
                 items: [
-                    { name: "Servo Driver X1", desc: "High precision servo driver.", image: "https://placehold.co/400x300?text=Servo+Driver" },
-                    { name: "PLC Controller", desc: "Robust visual logic controller.", image: "https://placehold.co/400x300?text=PLC+Controller" }
+                    { name: "Servo Driver X1", desc: "High precision servo driver.", image: "assets/uploads/Servo Driver X1.png" },
+                    { name: "PLC Controller", desc: "Robust visual logic controller.", image: "assets/uploads/PLCController.webp" }
                 ]
             }
         },
@@ -58,51 +58,51 @@ export const defaultContent = {
                         {
                             name: "Rotary Converter",
                             specs: "Efficient Phase Conversion",
-                            image: "https://placehold.co/400x300?text=Rotary+Converter",
+                            image: "assets/uploads/Rotary Converter.jpg",
                             model3d: "https://modelviewer.dev/shared-assets/models/RobotExpressive.glb",
                             tags: ["High Efficiency", "Industrial", "Available"]
                         },
                         {
                             name: "Electric Motors",
                             specs: "High Efficiency Industrial Motors",
-                            image: "https://placehold.co/400x300?text=Electric+Motors",
+                            image: "assets/uploads/Electric Motors.jpg",
                             tags: ["Heavy Duty", "Industrial"]
                         },
                         {
                             name: "Single Phase Electric Motor",
                             specs: "Domestic & Light Industrial",
-                            image: "https://placehold.co/400x300?text=1-Phase+Motor",
+                            image: "assets/uploads/Single Phase Electric Motor.jpg",
                             tags: ["Domestic", "Single Phase"]
                         },
-                        { name: "Three Phase Electric Motor", specs: "Heavy Duty Industrial", image: "https://placehold.co/400x300?text=3-Phase+Motor" },
-                        { name: "Electric Power Generator", specs: "Reliable Backup Power", image: "https://placehold.co/400x300?text=Power+Generator" }
+                        { name: "Three Phase Electric Motor", specs: "Heavy Duty Industrial", image: "assets/uploads/Three Phase Electric Motor.jpg" },
+                        { name: "Electric Power Generator", specs: "Reliable Backup Power", image: "assets/uploads/Electric Power Generator.jpg" }
                     ]
                 },
                 {
                     id: "tools",
                     title: "Industrial Tools",
                     products: [
-                        { name: "Hand Tools", specs: "Precision Engineering Tools", image: "https://placehold.co/400x300?text=Hand+Tools" },
-                        { name: "Hydraulic Tools", specs: "High Force Application", image: "https://placehold.co/400x300?text=Hydraulic+Tools" },
-                        { name: "Pneumatic Tools", specs: "Air Powered Efficiency", image: "https://placehold.co/400x300?text=Pneumatic+Tools" }
+                        { name: "Hand Tools", specs: "Precision Engineering Tools", image: "assets/uploads/Hand Tools.jpg" },
+                        { name: "Hydraulic Tools", specs: "High Force Application", image: "assets/uploads/Hydraulic Tools.jpg" },
+                        { name: "Pneumatic Tools", specs: "Air Powered Efficiency", image: "assets/uploads/Pneumatic Tools.jpg" }
                     ]
                 },
                 {
                     id: "electrical",
                     title: "Electrical Components",
                     products: [
-                        { name: "Electric Control Panel", specs: "Custom Automation Control", image: "https://placehold.co/400x300?text=Control+Panel" },
-                        { name: "Electrical Switch Board", specs: "Power Distribution", image: "https://placehold.co/400x300?text=Switch+Board" },
-                        { name: "Electrical Fuse", specs: "Circuit Protection", image: "https://placehold.co/400x300?text=Electrical+Fuse" }
+                        { name: "Electric Control Panel", specs: "Custom Automation Control", image: "assets/uploads/Electric Control Panel.jpg" },
+                        { name: "Electrical Switch Board", specs: "Power Distribution", image: "assets/uploads/Electrical Switch Board.jpg" },
+                        { name: "Electrical Fuse", specs: "Circuit Protection", image: "assets/uploads/Electrical Fuse.jpg" }
                     ]
                 },
                 {
                     id: "automotive",
                     title: "Automotive Parts",
                     products: [
-                        { name: "Automotive Components", specs: "OEM Quality Standards", image: "https://placehold.co/400x300?text=Auto+Components" },
-                        { name: "Automotive Plastic Components", specs: "Durable & Lightweight", image: "https://placehold.co/400x300?text=Plastic+Components" },
-                        { name: "Automotive Spare Parts", specs: "Wide Range Available", image: "https://placehold.co/400x300?text=Spare+Parts" }
+                        { name: "Automotive Components", specs: "OEM Quality Standards", image: "assets/uploads/Automotive Components.jpg" },
+                        { name: "Automotive Plastic Components", specs: "Durable & Lightweight", image: "assets/uploads/Automotive Plastic Components.jpg" },
+                        { name: "Automotive Spare Parts", specs: "Wide Range Available", image: "assets/uploads/Automotive Spare Parts.jpg" }
                     ]
                 }
             ]
