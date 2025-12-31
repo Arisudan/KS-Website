@@ -167,8 +167,9 @@ class Store {
                 this.notify();
             }
         } catch (e) {
-            console.error("Backend save failed:", e);
-            alert("Warning: Changes could not be saved to server. " + e.message);
+            // console.error("Backend save failed:", e);
+            // alert("Warning: Changes could not be saved to server. " + e.message);
+            // Silent fail for static hosting
         }
     }
 

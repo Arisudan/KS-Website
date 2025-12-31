@@ -33,9 +33,10 @@ export function renderProducts() {
         mediaContainer.innerHTML = `
              <div class="w-full h-full min-h-[300px] flex items-center justify-center bg-white rounded-xl overflow-hidden relative group p-4 border border-slate-100">
                 <img 
-                    src="${product.image}" 
+                    src="${product.image || 'https://placehold.co/600x400?text=No+Image'}" 
                     alt="${product.name}" 
                     class="max-w-full max-h-full object-contain transition-transform duration-500 hover:scale-105"
+                    onerror="this.src='https://placehold.co/600x400?text=Image+Not+Found'"
                 >
                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
              </div>
