@@ -70,7 +70,7 @@ export async function renderApp(route) {
 
         // Update Mobile Menu (Close it)
         const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu) mobileMenu.classList.add('hidden');
+        if (mobileMenu) mobileMenu.classList.add('translate-x-full');
     }
 
     // Post-render hooks

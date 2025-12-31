@@ -17,7 +17,7 @@ export function renderNavbar(currentRoute, editMode = false) {
     }
 
     return `
-        <nav class="bg-brand-blue/95 backdrop-blur-md shadow-lg fixed w-full z-50 transition-all duration-300 border-b border-white/10" id="navbar">
+        <nav class="bg-brand-blue/95 backdrop-blur-md shadow-lg fixed w-full top-0 left-0 z-50 transition-all duration-300 border-b border-white/10" id="navbar">
             <div class="container mx-auto px-6 py-4">
                 <div class="flex justify-between items-center">
                     <!-- Logo -->
@@ -69,33 +69,38 @@ export function renderNavbar(currentRoute, editMode = false) {
                     </button>
                 </div>
             </div>
+        </nav>
 
-            <!-- Mobile Fullscreen Menu -->
-            <div id="mobile-menu" class="fixed inset-0 bg-slate-900/98 backdrop-blur-xl z-[100] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col justify-center items-center gap-10">
-                <!-- Close Button -->
-                <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-white p-4 hover:bg-white/10 rounded-full transition-colors">
-                    <i data-lucide="x" class="w-10 h-10"></i>
+        <!-- Mobile Fullscreen Menu (Moved OUTSIDE nav to avoid backdrop filter clip) -->
+        <div id="mobile-menu" class="fixed inset-0 bg-slate-900 z-[100] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col">
+            <!-- Header inside Menu -->
+            <div class="flex justify-between items-center p-6 border-b border-white/10">
+                <span class="text-2xl font-bold text-white tracking-tight">Menu</span>
+                <button onclick="toggleMobileMenu()" class="text-white p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-8 h-8"></i>
                 </button>
-                
-                <!-- Menu Items -->
-                <div class="flex flex-col items-center gap-8 w-full">
-                    ${navLinks.map(link => `
-                        <a href="${link.path}" onclick="toggleMobileMenu()" 
-                           class="text-3xl font-bold text-white/90 hover:text-brand-accent transition-colors tracking-wide ${link.special ? 'text-emerald-400' : ''}">
-                           ${link.name}
-                        </a>
-                    `).join('')}
-                </div>
-                
-                <!-- Mobile Footer Info -->
-                <div class="absolute bottom-10 text-center text-slate-500 text-sm">
-                    <p class="mb-2">KS Drives and Controls</p>
-                    <div class="flex gap-4 justify-center">
-                        <a href="#" class="hover:text-white"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                        <a href="#" class="hover:text-white"><i data-lucide="mail" class="w-5 h-5"></i></a>
-                    </div>
+            </div>
+            
+            <!-- Menu Items -->
+            <div class="flex flex-col items-start p-8 gap-6 w-full overflow-y-auto">
+                ${navLinks.map(link => `
+                    <a href="${link.path}" onclick="toggleMobileMenu()" 
+                       class="text-2xl font-semibold text-white/90 hover:text-brand-accent transition-colors w-full flex items-center justify-between group ${link.special ? 'text-emerald-400' : ''}">
+                       <span>${link.name}</span>
+                       <i data-lucide="chevron-right" class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity text-brand-accent"></i>
+                    </a>
+                `).join('')}
+            </div>
+            
+            <!-- Mobile Footer Info -->
+            <div class="mt-auto p-8 text-center text-slate-500 border-t border-white/10 bg-slate-900/50">
+                <p class="mb-4">KS Drives and Controls</p>
+                <div class="flex gap-6 justify-center">
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="mail" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="phone" class="w-6 h-6"></i></a>
                 </div>
             </div>
-        </nav>
+        </div>
     `;
 }

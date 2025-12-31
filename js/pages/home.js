@@ -10,18 +10,17 @@ export function renderHome() {
         <section class="hero-slider bg-brand-dark">
             <!-- Slide 1 (Active) -->
             <!-- Slide 1 (Active) - Video Background -->
-            <div class="hero-slide active relative overflow-hidden min-h-screen flex items-center">
+            <div class="hero-slide active">
                 <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
                     <source src="https://assets.mixkit.co/videos/preview/mixkit-robotic-arm-moving-in-a-futuristic-scene-34665-large.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-brand-blue/90 via-brand-blue/70 to-black/60 z-10"></div>
-                
-                <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-40 pt-20 pb-32 md:pt-32 md:pb-72">
-                     <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-6 leading-snug max-w-5xl tracking-wide uppercase drop-shadow-lg ${editClass}" 
+                <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-40" style="margin-top: 0 !important; padding-top: 0 !important;">
+                     <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight max-w-5xl tracking-wide drop-shadow-lg ${editClass}" 
                         data-editable="pages.home.hero.title">${hero.title}</h1>
-                     <p class="text-2xl text-slate-200 mb-12 max-w-3xl font-light tracking-wide drop-shadow-md ${editClass}"
+                     <p class="text-lg md:text-2xl text-slate-200 mb-8 max-w-3xl font-light tracking-wide drop-shadow-md ${editClass}"
                         data-editable="pages.home.hero.subtitle">${hero.subtitle}</p>
-                     <a href="#products" class="bg-brand-accent text-white px-10 py-4 rounded-full font-bold hover:bg-sky-400 transition-all shadow-[0_0_20px_rgba(14,165,233,0.5)] hover:shadow-[0_0_30px_rgba(14,165,233,0.8)] text-lg uppercase tracking-wider border border-white/10 backdrop-blur-sm">
+                     <a href="#products" class="bg-white text-brand-blue px-8 py-3 md:px-10 md:py-4 rounded-full font-bold hover:bg-slate-100 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] text-base md:text-lg tracking-wider transform hover:scale-105">
                         <span ${editClass} data-editable="pages.home.hero.ctaText">${hero.ctaText}</span>
                      </a>
                 </div>
@@ -57,7 +56,7 @@ export function renderHome() {
 
         <!-- Animated Stats Counter -->
         <!-- Animated Stats Counter (Glassmorphism) -->
-        <section class="relative z-30 -mt-12 md:-mt-24 mb-16 px-4">
+        <section class="relative z-30 mt-0 lg:-mt-24 mb-16 px-4">
             <div class="container mx-auto">
                 <div class="bg-brand-blue/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-1 transition-transform duration-500">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 text-center text-white md:divide-x md:divide-white/10">

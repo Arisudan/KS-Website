@@ -18,6 +18,21 @@ export async function renderAdmin() {
         console.error("Failed to load messages:", e);
     }
 
+    // Fetch Daily Visitors (Realtime)
+    let dailyVisits = 0;
+    try {
+        const namespace = 'ks-drives-official-v1';
+        const today = new Date().toISOString().split('T')[0];
+        const key = `visits-${today}`;
+        const res = await fetch(`https://api.countapi.xyz/get/${namespace}/${key}`);
+        if (res.ok) {
+            const data = await res.json();
+            dailyVisits = data.value || 0;
+        }
+    } catch (e) {
+        // console.warn("Could not fetch stats");
+    }
+
     // Sort messages: Newest first
     messages.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
@@ -91,7 +106,7 @@ export async function renderAdmin() {
                             </div>
                             <div>
                                 <p class="text-sm text-slate-500 font-medium">Daily Visitors</p>
-                                <h3 class="text-2xl font-bold text-slate-800">124</h3>
+                                <h3 class="text-2xl font-bold text-slate-800">${dailyVisits}</h3>
                             </div>
                         </div>
                     </div>

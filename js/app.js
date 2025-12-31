@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupGlobalListeners();
     setupScrollToTop();
     setupWhatsApp();
+    setupVisitorTracking();
     setupScrollReveal();
     setup3DTilt();
 
@@ -381,4 +382,25 @@ function setupScrollReveal() {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+function setupVisitorTracking() {
+    // Unique Namespace for this site
+    const namespace = 'ks-drives-official-v1';
+    const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    const key = `visits-${today}`;
+    const storageKey = `tracked-${key}`;
+
+    // Only count once per session
+    if (!sessionStorage.getItem(storageKey)) {
+        // Use CountAPI (free) to increment
+        // Format: /hit/:namespace/:key
+        fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log("Daily Visit Counted:", data.value);
+                sessionStorage.setItem(storageKey, 'true');
+            })
+            .catch(e => console.warn("Tracking service unavailable:", e));
+    }
 }
