@@ -4,7 +4,7 @@ class Store {
     constructor() {
         this.state = {
             content: this.loadLocalContent(), // Initial load from local/default
-            editMode: false,
+            editMode: localStorage.getItem('ks_drives_admin_static') === 'true',
             user: null,
             cart: this.loadCart()
         };
@@ -174,34 +174,40 @@ class Store {
     }
 
     // New: Upload Image to Backend
+    // New: Upload Image to Cloudinary (Preferred)
     async uploadImage(file) {
-        // 1. Try Backend Upload First (for local python server users)
+        // 1. Try Cloudinary Upload (Free Usage Tier)
         try {
+            const CLOUD_NAME = 'dpkbzdodo';
+            const UPLOAD_PRESET = 'Products'; // Must be Unsigned
+            const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+
             const formData = new FormData();
             formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
 
-            // 2s Timeout to fail fast if backend is missing (Static Mode)
-            const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), 2000);
-
-            const res = await fetch('/api/upload', {
+            console.log("Uploading to Cloudinary...");
+            const res = await fetch(url, {
                 method: 'POST',
-                body: formData,
-                signal: controller.signal
+                body: formData
             });
-            clearTimeout(id);
 
             if (res.ok) {
                 const data = await res.json();
-                console.log("backend upload success:", data.url);
-                return data.url;
+                console.log("Cloudinary upload success:", data.secure_url);
+                return data.secure_url; // Return the remote URL
+            } else {
+                const err = await res.json();
+                console.error("Cloudinary error:", err);
+                alert("Cloudinary Upload Failed: " + (err.error?.message || "Unknown error"));
             }
         } catch (e) {
-            console.warn("Backend upload unavailable. Using Direct Client-Side Embedding.", e);
+            console.warn("Cloudinary upload failed (Offline?):", e);
         }
 
         // 2. Fallback: Direct Client-Side Compression (Base64)
-        // Allows upload without backend.
+        // Allows upload without internet or backend.
+        console.warn("Falling back to local Base64 storage (Not recommended for many images).");
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -280,7 +286,8 @@ class Store {
         // WARNING: This is client-side only and visible in source code.
         // Intended for static hosting (GitHub Pages) where no backend exists.
         if (password === 'admin') {
-            alert("Logged in via Static Mode (Local Admin). Changes will save to your browser.");
+            console.log("Logged in via Static Mode (Local Admin).");
+            localStorage.setItem('ks_drives_admin_static', 'true');
             this.state.editMode = true;
             this.notify();
             return true;
@@ -293,6 +300,7 @@ class Store {
         try {
             await fetch('/api/logout', { method: 'POST' });
         } catch (e) { console.error(e); }
+        localStorage.removeItem('ks_drives_admin_static');
         this.state.editMode = false;
         this.notify();
     }
