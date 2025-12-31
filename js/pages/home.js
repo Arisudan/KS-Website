@@ -20,7 +20,7 @@ export function renderHome() {
                         data-editable="pages.home.hero.title">${hero.title}</h1>
                      <p class="text-lg md:text-2xl text-slate-200 mb-8 max-w-3xl font-light tracking-wide drop-shadow-md ${editClass}"
                         data-editable="pages.home.hero.subtitle">${hero.subtitle}</p>
-                     <a href="#products" class="bg-white text-brand-blue px-8 py-3 md:px-10 md:py-4 rounded-full font-bold hover:bg-slate-100 transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] text-base md:text-lg tracking-wider transform hover:scale-105">
+                     <a href="#products" class="bg-brand-accent text-white px-8 py-3 md:px-10 md:py-4 rounded-full font-bold hover:bg-sky-400 transition-all shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] text-base md:text-lg tracking-wider transform hover:scale-105">
                         <span ${editClass} data-editable="pages.home.hero.ctaText">${hero.ctaText}</span>
                      </a>
                 </div>
@@ -60,20 +60,20 @@ export function renderHome() {
             <div class="container mx-auto">
                 <div class="bg-brand-blue/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-1 transition-transform duration-500">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 text-center text-white md:divide-x md:divide-white/10">
-                        <div class="p-2">
-                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-1 counter" data-target="15">15+</div>
+                        <div class="p-4 flex flex-col items-center justify-center">
+                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-2 py-1 leading-tight counter" data-target="15">15+</div>
                             <p class="text-xs md:text-sm text-slate-400 uppercase tracking-[0.2em] font-bold">Years Experience</p>
                         </div>
-                        <div class="p-2">
-                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-1 counter" data-target="500">500+</div>
+                        <div class="p-4 flex flex-col items-center justify-center">
+                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-2 py-1 leading-tight counter" data-target="500">500+</div>
                              <p class="text-xs md:text-sm text-slate-400 uppercase tracking-[0.2em] font-bold">Projects Done</p>
                         </div>
-                        <div class="p-2">
-                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-1 counter" data-target="50">50+</div>
+                        <div class="p-4 flex flex-col items-center justify-center">
+                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-2 py-1 leading-tight counter" data-target="50">50+</div>
                              <p class="text-xs md:text-sm text-slate-400 uppercase tracking-[0.2em] font-bold">Happy Clients</p>
                         </div>
-                        <div class="p-2">
-                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-1 counter" data-target="24">24/7</div>
+                        <div class="p-4 flex flex-col items-center justify-center">
+                            <div class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-brand-accent to-cyan-200 mb-2 py-1 leading-tight counter" data-target="24">24/7</div>
                              <p class="text-xs md:text-sm text-slate-400 uppercase tracking-[0.2em] font-bold">Hour Support</p>
                         </div>
                     </div>
